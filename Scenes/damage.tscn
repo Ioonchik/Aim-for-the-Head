@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dabygokpjivh3"]
+
+[ext_resource type="FontFile" uid="uid://dtjvkorh14rul" path="res://Fonts/Ubuntu-Bold.ttf" id="1_aw0cc"]
+[ext_resource type="Script" path="res://Scenes/damage.gd" id="2_tcqv8"]
+
+[node name="Damage" type="Label"]
+z_index = 10
+offset_left = 494.0
+offset_top = 332.0
+offset_right = 534.0
+offset_bottom = 355.0
+theme_override_fonts/font = ExtResource("1_aw0cc")
+theme_override_font_sizes/font_size = 32
+text = "0"
+script = ExtResource("2_tcqv8")

@@ -1,0 +1,207 @@
+[gd_scene load_steps=14 format=3 uid="uid://w0c0i10fufje"]
+
+[ext_resource type="Script" path="res://Scenes/enemies/flower.gd" id="1_namb5"]
+[ext_resource type="Texture2D" uid="uid://bpljqf4agwdx4" path="res://Sprites/Enemies/Flower/FlowerBody.svg" id="1_s08iv"]
+[ext_resource type="Texture2D" uid="uid://cau2ymckglafd" path="res://Sprites/Enemies/Flower/FlowerHead.svg" id="2_p8ux0"]
+[ext_resource type="Texture2D" uid="uid://bqgn1xdi8rhd3" path="res://Sprites/Enemies/Flower/RightLeaf.svg" id="3_rbmxp"]
+[ext_resource type="Texture2D" uid="uid://bmywdt7q4yrbb" path="res://Sprites/Enemies/Flower/LeftLeaf.svg" id="4_6s0h5"]
+[ext_resource type="Texture2D" uid="uid://bv8gren0bgjd3" path="res://Sprites/Shadow.svg" id="6_xkcb3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n0lee"]
+radius = 12.0
+height = 166.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4616"]
+radius = 59.6657
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oelp"]
+radius = 7.91177
+height = 39.9008
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up1ia"]
+size = Vector2(209.5, 63)
+
+[sub_resource type="Animation" id="Animation_xdw44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/BodyBone:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/BodyBone/HeadBone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/RightLeafBone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/LeftLeafBone:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8v8p4"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/BodyBone:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.20944, 0.0, 0.226893, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/BodyBone/HeadBone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/RightLeafBone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.122173]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/LeftLeafBone:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.139626]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ukt6m"]
+_data = {
+"RESET": SubResource("Animation_xdw44"),
+"idle": SubResource("Animation_8v8p4")
+}
+
+[node name="Flower" type="Area2D"]
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_namb5")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="BodyBone" type="Bone2D" parent="Skeleton2D"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="BodySprite" type="Sprite2D" parent="Skeleton2D/BodyBone"]
+z_index = 1
+position = Vector2(-6, -32)
+texture = ExtResource("1_s08iv")
+
+[node name="BodyArea" type="Area2D" parent="Skeleton2D/BodyBone"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/BodyBone/BodyArea"]
+position = Vector2(6, -85)
+shape = SubResource("CapsuleShape2D_n0lee")
+
+[node name="HeadBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+position = Vector2(-53, -177)
+rest = Transform2D(1, 0, 0, 1, -53, -177)
+
+[node name="HeadSprite" type="Sprite2D" parent="Skeleton2D/BodyBone/HeadBone"]
+texture = ExtResource("2_p8ux0")
+
+[node name="HeadArea" type="Area2D" parent="Skeleton2D/BodyBone/HeadBone"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/BodyBone/HeadBone/HeadArea"]
+position = Vector2(-9.1785, 4.95139)
+shape = SubResource("CircleShape2D_m4616")
+
+[node name="NeckArea" type="Area2D" parent="Skeleton2D/BodyBone"]
+position = Vector2(-16.0658, -129.298)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/BodyBone/NeckArea"]
+position = Vector2(1.7773, 1.35692)
+rotation = 0.846485
+shape = SubResource("CapsuleShape2D_4oelp")
+
+[node name="RightLeafBone" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(8, 8)
+rest = Transform2D(1, 0, 0, 1, 52, -7)
+
+[node name="RightLeaf" type="Sprite2D" parent="Skeleton2D/RightLeafBone"]
+z_index = 1
+position = Vector2(53, -12)
+texture = ExtResource("3_rbmxp")
+
+[node name="LeftLeafBone" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(-10, 10)
+rest = Transform2D(1, 0, 0, 1, -55, -4)
+
+[node name="LeftLeaf" type="Sprite2D" parent="Skeleton2D/LeftLeafBone"]
+z_index = 1
+position = Vector2(-46, -6)
+texture = ExtResource("4_6s0h5")
+
+[node name="LegsArea" type="Area2D" parent="Skeleton2D"]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/LegsArea"]
+position = Vector2(-17.75, 1.5)
+shape = SubResource("RectangleShape2D_up1ia")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ukt6m")
+}
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 30)
+texture = ExtResource("6_xkcb3")

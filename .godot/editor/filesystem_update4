@@ -1,0 +1,8 @@
+res://Scenes/menu.tscn
+res://Scenes/main.tscn
+res://Scenes/bg/bg.tscn
+res://Scenes/spawner.gd
+res://Scenes/merchant.tscn
+res://Scenes/enemy.gd
+res://Scenes/enemy.tscn
+res://Scenes/merchant.gd

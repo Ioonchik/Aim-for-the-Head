@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://2cmk7ognq7ex"]
+
+[ext_resource type="Texture2D" uid="uid://bhts4iq0lcv2t" path="res://Sprites/BG/Field/Mountains/Mountain.svg" id="1_oekgs"]
+[ext_resource type="Texture2D" uid="uid://x1qc38ksv0rh" path="res://Sprites/BG/Field/Forest/Forest.svg" id="1_r30uh"]
+[ext_resource type="Texture2D" uid="uid://bokh447lsjej5" path="res://Sprites/BG/Field/Mountains/Mountain_2.svg" id="2_86gfn"]
+[ext_resource type="Texture2D" uid="uid://bfd84o25hlc17" path="res://Sprites/BG/Field/Forest/Forest_2.svg" id="2_qltu2"]
+[ext_resource type="Texture2D" uid="uid://do7nau7iofsdr" path="res://Sprites/BG/Field/Forest/Forest_3.svg" id="3_5ukah"]
+[ext_resource type="Texture2D" uid="uid://dq2sdtwucli47" path="res://Sprites/BG/Field/Mountains/Mountain_3.svg" id="3_7n7tp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pujka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r30uh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qltu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ukah")
+}],
+"loop": true,
+"name": &"forest",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oekgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_86gfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7n7tp")
+}],
+"loop": true,
+"name": &"mountain",
+"speed": 5.0
+}]
+
+[node name="Mountain" type="AnimatedSprite2D"]
+z_index = -30
+sprite_frames = SubResource("SpriteFrames_pujka")
+animation = &"mountain"

@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6k1yr6wgvwi4"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_qokta"]
+[ext_resource type="Texture2D" uid="uid://dxxpyei23vhy7" path="res://Sprites/Player.svg" id="1_ykxn2"]
+[ext_resource type="Texture2D" uid="uid://bv8gren0bgjd3" path="res://Sprites/Shadow.svg" id="3_43gah"]
+[ext_resource type="Texture2D" uid="uid://c2hy4dppymgra" path="res://Sprites/Skins/Luffy.svg" id="4_squeh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0wr6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ykxn2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_squeh")
+}],
+"loop": true,
+"name": &"luffy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dkjc"]
+size = Vector2(90, 248)
+
+[sub_resource type="Animation" id="Animation_s1037"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x1lmy"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skgkn"]
+_data = {
+"RESET": SubResource("Animation_s1037"),
+"die": SubResource("Animation_x1lmy")
+}
+
+[node name="Player" type="Area2D"]
+position = Vector2(539, 231)
+collision_mask = 2
+script = ExtResource("1_qokta")
+metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-7, 125)
+texture = ExtResource("3_43gah")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 120)
+sprite_frames = SubResource("SpriteFrames_m0wr6")
+offset = Vector2(0, -120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 8)
+shape = SubResource("RectangleShape2D_8dkjc")
+
+[node name="RedTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_skgkn")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="RedTimer" to="." method="_on_red_timer_timeout"]

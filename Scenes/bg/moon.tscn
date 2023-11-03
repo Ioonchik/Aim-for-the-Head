@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://i7wgxrhnujee"]
+
+[ext_resource type="Texture2D" uid="uid://b5n0uf8b1lk0y" path="res://Sprites/BG/Moon.svg" id="1_kbs3d"]
+
+[sub_resource type="Gradient" id="Gradient_hlumi"]
+offsets = PackedFloat32Array(0, 0.741935)
+colors = PackedColorArray(0.654232, 0.654232, 0.654232, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lg4a1"]
+gradient = SubResource("Gradient_hlumi")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Moon" type="AspectRatioContainer"]
+offset_top = -200.0
+offset_right = 1280.0
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 200
+z_as_relative = false
+position = Vector2(640, 100)
+scale = Vector2(7.5, 7.5)
+enabled = false
+color = Color(0.835938, 0.792969, 0.566406, 1)
+texture = SubResource("GradientTexture2D_lg4a1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -50
+layout_mode = 2
+texture = ExtResource("1_kbs3d")

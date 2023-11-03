@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ygcrdamowvtu"]
+
+[ext_resource type="Script" path="res://Scenes/cloud_generator.gd" id="1_bntap"]
+[ext_resource type="PackedScene" uid="uid://dkh188pibplkb" path="res://Scenes/cloud.tscn" id="2_13hhf"]
+
+[node name="CloudGenerator" type="Node2D"]
+script = ExtResource("1_bntap")
+
+[node name="CloudTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Clouds" type="Node2D" parent="."]
+
+[node name="Cloud" parent="Clouds" instance=ExtResource("2_13hhf")]
+
+[connection signal="timeout" from="CloudTimer" to="." method="_on_cloud_timer_timeout"]

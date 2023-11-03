@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn1i11pdumnk7"]
+
+[ext_resource type="Script" path="res://Scenes/damage_particle.gd" id="1_cnvou"]
+[ext_resource type="FontFile" uid="uid://dtjvkorh14rul" path="res://Fonts/Ubuntu-Bold.ttf" id="1_prc7k"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jcs7i"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -100, 0)
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+linear_accel_min = -50.0
+linear_accel_max = 50.0
+radial_accel_min = -50.0
+radial_accel_max = 50.0
+angle_min = -5.0
+angle_max = 5.0
+scale_min = 0.8
+scale_max = 1.2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2xe51"]
+viewport_path = NodePath("SubViewport")
+
+[node name="DamageParticle" type="Node2D"]
+z_index = 10
+script = ExtResource("1_cnvou")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(40, 40)
+size_2d_override = Vector2i(64, 64)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_prc7k")
+theme_override_font_sizes/font_size = 32
+text = "1"
+
+[node name="Particle" type="GPUParticles2D" parent="."]
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_jcs7i")
+texture = SubResource("ViewportTexture_2xe51")
+lifetime = 2.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceg63n3use5e2"]
+
+[ext_resource type="Script" path="res://Scenes/bg/bg.gd" id="1_7x5bh"]
+[ext_resource type="Texture2D" uid="uid://c5q0j5dncxwf1" path="res://Sprites/BG/Field_no_sun.svg" id="1_wfj6v"]
+[ext_resource type="Texture2D" uid="uid://b8j4rrydclc7x" path="res://Sprites/BG/Field_night.svg" id="2_2j0m7"]
+[ext_resource type="PackedScene" uid="uid://i7wgxrhnujee" path="res://Scenes/bg/moon.tscn" id="6_2jorn"]
+
+[node name="BG" type="Node2D"]
+z_index = -5
+script = ExtResource("1_7x5bh")
+metadata/_edit_lock_ = true
+
+[node name="Bg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640, 360)
+texture = ExtResource("1_wfj6v")
+metadata/_edit_lock_ = true
+
+[node name="FieldNight" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_2j0m7")
+centered = false
+
+[node name="Mountains" type="Node2D" parent="."]
+
+[node name="Lands" type="Node2D" parent="."]
+
+[node name="Forest" type="Node2D" parent="."]
+
+[node name="Moon" parent="." instance=ExtResource("6_2jorn")]

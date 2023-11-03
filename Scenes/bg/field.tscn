@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://giw0dfb7xoa2"]
+
+[ext_resource type="Texture2D" uid="uid://cdk7jbyal2ap6" path="res://Sprites/BG/Field/Field.svg" id="1_p7gh1"]
+[ext_resource type="Texture2D" uid="uid://y54hk1pyu6lb" path="res://Sprites/BG/Field/Field_2.svg" id="2_v8von"]
+[ext_resource type="Texture2D" uid="uid://lsxkd1675kk5" path="res://Sprites/BG/Field/Field_3.svg" id="3_5dlku"]
+[ext_resource type="Texture2D" uid="uid://dfx6u2udtkr08" path="res://Sprites/BG/Field/Field_4.svg" id="4_b065v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1u1if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p7gh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v8von")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5dlku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b065v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Field" type="AnimatedSprite2D"]
+z_index = -20
+sprite_frames = SubResource("SpriteFrames_1u1if")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+z_index = -100
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -305.0
+offset_top = -148.0
+offset_right = -305.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+color = Color(0, 0.662745, 0.792157, 1)

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://4q2hah1uevaa"]
+
+[ext_resource type="Script" path="res://Scenes/bullet.gd" id="1_apcjv"]
+[ext_resource type="Texture2D" uid="uid://mkhvbegyed6y" path="res://Sprites/Weapons/Arrow.svg" id="1_ksqn3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4mcqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ksqn3")
+}],
+"loop": true,
+"name": &"arrow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk3lu"]
+size = Vector2(28.5, 15)
+
+[node name="Bullet" type="RigidBody2D"]
+z_index = 2
+collision_layer = 4
+collision_mask = 2
+gravity_scale = 0.0
+max_contacts_reported = 1
+script = ExtResource("1_apcjv")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4mcqv")
+animation = &"arrow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15.25, 0)
+shape = SubResource("RectangleShape2D_tk3lu")

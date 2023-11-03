@@ -1,0 +1,240 @@
+[gd_scene load_steps=21 format=3 uid="uid://dnfk4t60syai5"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_rkf2c"]
+[ext_resource type="PackedScene" uid="uid://ceg63n3use5e2" path="res://Scenes/bg/bg.tscn" id="1_wf65d"]
+[ext_resource type="PackedScene" uid="uid://c6k1yr6wgvwi4" path="res://Scenes/player.tscn" id="2_n1442"]
+[ext_resource type="PackedScene" uid="uid://xkbo0iowaur5" path="res://Scenes/weapon.tscn" id="3_4gajx"]
+[ext_resource type="Texture2D" uid="uid://berx12bpa01fg" path="res://Sprites/BG/Sun.svg" id="3_j37wc"]
+[ext_resource type="PackedScene" uid="uid://d2bagau5lp4go" path="res://Scenes/spawner.tscn" id="4_0keqd"]
+[ext_resource type="PackedScene" uid="uid://chr6588v5e8eq" path="res://Scenes/camera.tscn" id="5_ntu2i"]
+[ext_resource type="Script" path="res://Scenes/HUD.gd" id="6_nmhdp"]
+[ext_resource type="FontFile" uid="uid://dtjvkorh14rul" path="res://Fonts/Ubuntu-Bold.ttf" id="7_helut"]
+[ext_resource type="Texture2D" uid="uid://cnudrxx1txmfh" path="res://Sprites/HUD/Skull.svg" id="8_egsuy"]
+[ext_resource type="Texture2D" uid="uid://bft76gr0eyrty" path="res://Sprites/ProgressBars/ProgressBarUnder.svg" id="9_mfy5g"]
+[ext_resource type="Texture2D" uid="uid://mewa2a2wqcll" path="res://Sprites/ProgressBars/ProgressBarOver.svg" id="10_jcqoh"]
+[ext_resource type="Texture2D" uid="uid://yqasrhkywe3f" path="res://Sprites/ProgressBars/RedBarProgress.svg" id="11_c3e28"]
+[ext_resource type="Texture2D" uid="uid://bwx0evecp0gve" path="res://Sprites/ProgressBars/BlueBarProgress.svg" id="12_2idli"]
+[ext_resource type="Texture2D" uid="uid://wdvhqpjceul4" path="res://Sprites/HUD/Soul.svg" id="13_i1nnc"]
+[ext_resource type="Texture2D" uid="uid://71w2a3qo12vw" path="res://Sprites/HUD/Soulite.svg" id="14_e5euj"]
+[ext_resource type="Script" path="res://Scenes/Message.gd" id="15_4qtjf"]
+[ext_resource type="PackedScene" uid="uid://ygcrdamowvtu" path="res://Scenes/cloud_generator.tscn" id="17_e08ky"]
+
+[sub_resource type="Gradient" id="Gradient_bjyuy"]
+colors = PackedColorArray(1, 1, 1, 0.137255, 0, 0, 0, 0.858824)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nnmgv"]
+gradient = SubResource("Gradient_bjyuy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rkf2c")
+
+[node name="BG" parent="." instance=ExtResource("1_wf65d")]
+
+[node name="Sun" type="AspectRatioContainer" parent="."]
+z_index = -40
+offset_left = 1150.0
+offset_top = -50.0
+offset_right = 1335.0
+offset_bottom = 110.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Sun"]
+layout_mode = 2
+texture = ExtResource("3_j37wc")
+
+[node name="CloudGenerator" parent="." instance=ExtResource("17_e08ky")]
+z_as_relative = false
+
+[node name="Player" parent="." instance=ExtResource("2_n1442")]
+position = Vector2(360, 400)
+
+[node name="Weapon" parent="." instance=ExtResource("3_4gajx")]
+position = Vector2(420, 400)
+
+[node name="Spawner" parent="." instance=ExtResource("4_0keqd")]
+z_index = 5
+
+[node name="DarkRect" type="ColorRect" parent="."]
+visible = false
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+color = Color(0, 0, 0, 0)
+metadata/_edit_lock_ = true
+
+[node name="Camera" parent="." instance=ExtResource("5_ntu2i")]
+position = Vector2(0, 0)
+anchor_mode = 0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("6_nmhdp")
+
+[node name="Cooldown" type="Label" parent="HUD"]
+offset_left = 255.0
+offset_top = 145.0
+offset_right = 285.0
+offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("7_helut")
+text = "0.5s"
+
+[node name="Kills" type="HBoxContainer" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 40.0
+offset_right = 42.0
+offset_bottom = 97.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Kills"]
+layout_mode = 2
+texture = ExtResource("8_egsuy")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HUD/Kills"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_helut")
+theme_override_font_sizes/font_size = 32
+text = ": 0"
+
+[node name="Stats" type="VBoxContainer" parent="HUD"]
+offset_left = 30.0
+offset_top = 50.0
+offset_right = 250.0
+offset_bottom = 317.0
+theme_override_constants/separation = 15
+
+[node name="HealthBar" type="VBoxContainer" parent="HUD/Stats"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HealthCount" type="Label" parent="HUD/Stats/HealthBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_helut")
+text = "Health: 10/10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HealthCountBar" type="TextureProgressBar" parent="HUD/Stats/HealthBar"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("9_mfy5g")
+texture_over = ExtResource("10_jcqoh")
+texture_progress = ExtResource("11_c3e28")
+
+[node name="AmmoBar" type="VBoxContainer" parent="HUD/Stats"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="BulletCount" type="Label" parent="HUD/Stats/AmmoBar"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_helut")
+text = "Ammo: 10/10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BulletCountBar" type="TextureProgressBar" parent="HUD/Stats/AmmoBar"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("9_mfy5g")
+texture_over = ExtResource("10_jcqoh")
+texture_progress = ExtResource("12_2idli")
+
+[node name="Soul" type="HBoxContainer" parent="HUD/Stats"]
+layout_mode = 2
+
+[node name="Soul" type="TextureRect" parent="HUD/Stats/Soul"]
+layout_mode = 2
+texture = ExtResource("13_i1nnc")
+stretch_mode = 4
+
+[node name="SoulCount" type="Label" parent="HUD/Stats/Soul"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_helut")
+theme_override_font_sizes/font_size = 32
+text = ": 0"
+
+[node name="Soulite" type="HBoxContainer" parent="HUD/Stats"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Stats/Soulite"]
+layout_mode = 2
+texture = ExtResource("14_e5euj")
+
+[node name="Label" type="Label" parent="HUD/Stats/Soulite"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_helut")
+theme_override_font_sizes/font_size = 32
+text = ": 0"
+
+[node name="Label" type="Label" parent="HUD"]
+visible = false
+offset_left = 618.0
+offset_top = 198.0
+offset_right = 658.0
+offset_bottom = 221.0
+
+[node name="Label2" type="Label" parent="HUD"]
+visible = false
+offset_left = 620.0
+offset_top = 146.0
+offset_right = 660.0
+offset_bottom = 169.0
+
+[node name="WaveProgress" type="ProgressBar" parent="HUD"]
+modulate = Color(0, 0, 0, 0.494118)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -70.0
+offset_right = -240.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 3.0
+show_percentage = false
+
+[node name="Message" type="Node2D" parent="HUD"]
+script = ExtResource("15_4qtjf")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="BlackGrad" type="TextureRect" parent="HUD/Message"]
+modulate = Color(0, 0, 0, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = SubResource("GradientTexture2D_nnmgv")
+
+[node name="Message" type="Label" parent="HUD/Message"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_helut")
+theme_override_font_sizes/font_size = 64
+text = "Wave 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="cooldown_signal" from="Weapon" to="." method="_on_weapon_cooldown_signal"]
+[connection signal="wave_ended" from="Spawner" to="." method="_on_spawner_wave_ended"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkh188pibplkb"]
+
+[ext_resource type="Texture2D" uid="uid://dkrpcx3xk8agh" path="res://Sprites/Clouds/Cloud2.svg" id="1_b7y5i"]
+[ext_resource type="Texture2D" uid="uid://dq2k6gftng13s" path="res://Sprites/Clouds/Cloud3.svg" id="2_6fnch"]
+[ext_resource type="Texture2D" uid="uid://b1rtegswnvao8" path="res://Sprites/Clouds/Cloud4.svg" id="3_i0455"]
+[ext_resource type="Texture2D" uid="uid://h752vgt12lmw" path="res://Sprites/Clouds/Cloud.svg" id="4_0bxhh"]
+[ext_resource type="Script" path="res://Scenes/cloud.gd" id="5_heyli"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v85nu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b7y5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6fnch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i0455")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0bxhh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cloud" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(-140, 120)
+sprite_frames = SubResource("SpriteFrames_v85nu")
+script = ExtResource("5_heyli")

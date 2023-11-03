@@ -1,0 +1,343 @@
+[gd_scene load_steps=19 format=3 uid="uid://1yh8wj37q2pp"]
+
+[ext_resource type="Script" path="res://Scenes/menu.gd" id="1_1fj4l"]
+[ext_resource type="PackedScene" uid="uid://ceg63n3use5e2" path="res://Scenes/bg/bg.tscn" id="2_ds1a0"]
+[ext_resource type="Texture2D" uid="uid://berx12bpa01fg" path="res://Sprites/BG/Sun.svg" id="3_0v15e"]
+[ext_resource type="FontFile" uid="uid://dtjvkorh14rul" path="res://Fonts/Ubuntu-Bold.ttf" id="3_rsybf"]
+[ext_resource type="Texture2D" uid="uid://bauokj5rsop6g" path="res://Sprites/HUD/Buttons/Shop.svg" id="6_l6qob"]
+[ext_resource type="Texture2D" uid="uid://dmqnn7umld3p8" path="res://Sprites/HUD/Panels/ShopPanel.svg" id="7_tnfrd"]
+[ext_resource type="Texture2D" uid="uid://cgsnhofdyxmtd" path="res://Sprites/HUD/Panels/WeaponTab.svg" id="7_y63e1"]
+[ext_resource type="Texture2D" uid="uid://wdvhqpjceul4" path="res://Sprites/HUD/Soul.svg" id="8_iehte"]
+[ext_resource type="Texture2D" uid="uid://c30qkjlktge4r" path="res://Sprites/HUD/Upgrades/ShopProduct.svg" id="10_pe3x1"]
+[ext_resource type="Texture2D" uid="uid://nty20nr8f04x" path="res://Sprites/Weapons/Bow.svg" id="11_4s8aa"]
+[ext_resource type="Texture2D" uid="uid://bckptkv3ghpm2" path="res://Sprites/HUD/Upgrades/Level.svg" id="12_g6ieo"]
+[ext_resource type="Texture2D" uid="uid://bh65l68qnqmta" path="res://Sprites/HUD/Upgrades/UpgradeBuy.svg" id="13_knqdo"]
+[ext_resource type="PackedScene" uid="uid://ygcrdamowvtu" path="res://Scenes/cloud_generator.tscn" id="13_n5a1p"]
+
+[sub_resource type="Gradient" id="Gradient_fegxx"]
+colors = PackedColorArray(1, 1, 1, 0.137255, 0, 0, 0, 0.858824)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rwn5"]
+gradient = SubResource("Gradient_fegxx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_01kq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeElements/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bepxb"]
+resource_name = "label"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeElements/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avk64"]
+_data = {
+"RESET": SubResource("Animation_01kq6"),
+"label": SubResource("Animation_bepxb")
+}
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_1fj4l")
+
+[node name="BG" parent="." instance=ExtResource("2_ds1a0")]
+
+[node name="CloudGenerator" parent="." instance=ExtResource("13_n5a1p")]
+
+[node name="Sun" type="AspectRatioContainer" parent="."]
+z_index = -40
+offset_left = 1150.0
+offset_top = -50.0
+offset_right = 1335.0
+offset_bottom = 110.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Sun"]
+layout_mode = 2
+texture = ExtResource("3_0v15e")
+
+[node name="FadeElements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackGrad" type="TextureRect" parent="FadeElements"]
+modulate = Color(0, 0, 0, 0.745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_3rwn5")
+
+[node name="BlackGradButton" type="Button" parent="FadeElements/BlackGrad"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shop" type="Sprite2D" parent="FadeElements"]
+position = Vector2(150, 600)
+texture = ExtResource("6_l6qob")
+
+[node name="ShopButton" type="Button" parent="FadeElements/Shop" groups=["button"]]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="FadeElements"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rsybf")
+theme_override_font_sizes/font_size = 64
+text = "Tap to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_avk64")
+}
+
+[node name="PanelBG" type="ColorRect" parent="."]
+offset_right = 1316.0
+offset_bottom = 736.0
+color = Color(0, 0, 0, 0)
+
+[node name="Shop" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="WeaponTab" type="Sprite2D" parent="Shop"]
+position = Vector2(-340, 100)
+texture = ExtResource("7_y63e1")
+
+[node name="ShopPanel" type="Sprite2D" parent="Shop"]
+position = Vector2(0, 360)
+texture = ExtResource("7_tnfrd")
+
+[node name="ColorRect" type="ColorRect" parent="Shop"]
+layout_mode = 0
+offset_left = -458.0
+offset_top = 37.0
+offset_right = 461.0
+offset_bottom = 600.0
+color = Color(1, 1, 1, 0)
+
+[node name="Soul" type="HBoxContainer" parent="Shop"]
+layout_mode = 0
+offset_left = -406.0
+offset_top = 497.0
+offset_right = -55.0
+offset_bottom = 573.0
+scale = Vector2(0.8, 0.8)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Shop/Soul"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("8_iehte")
+
+[node name="Label" type="Label" parent="Shop/Soul"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_rsybf")
+theme_override_font_sizes/font_size = 50
+text = ": 0"
+vertical_alignment = 1
+
+[node name="Products" type="HBoxContainer" parent="Shop"]
+layout_mode = 0
+offset_left = -390.0
+offset_top = 200.0
+offset_right = 172.0
+offset_bottom = 330.0
+theme_override_constants/separation = 0
+
+[node name="BowButton" type="Button" parent="Shop/Products" groups=["product_bttn"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Shop/Products/BowButton"]
+position = Vector2(50, 50)
+texture = ExtResource("10_pe3x1")
+
+[node name="Bow" type="Sprite2D" parent="Shop/Products/BowButton/Sprite2D"]
+position = Vector2(6, -4)
+rotation = -0.610865
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("11_4s8aa")
+
+[node name="ProductButton2" type="Button" parent="Shop/Products" groups=["product_bttn"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/Products"]
+layout_mode = 2
+
+[node name="BowName" type="Label" parent="Shop"]
+layout_mode = 0
+offset_left = -390.0
+offset_top = 305.0
+offset_right = -290.0
+offset_bottom = 328.0
+theme_override_fonts/font = ExtResource("3_rsybf")
+theme_override_font_sizes/font_size = 16
+text = "Bow"
+horizontal_alignment = 1
+
+[node name="Chosen" type="Node2D" parent="Shop"]
+position = Vector2(-640, 0)
+
+[node name="Bow" type="Node2D" parent="Shop/Chosen"]
+
+[node name="Bow" type="Sprite2D" parent="Shop/Chosen/Bow"]
+position = Vector2(960, 255)
+rotation = -0.523599
+texture = ExtResource("11_4s8aa")
+
+[node name="Power" type="VBoxContainer" parent="Shop/Chosen/Bow"]
+offset_left = 860.0
+offset_top = 340.0
+offset_right = 1032.0
+offset_bottom = 411.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Shop/Chosen/Bow/Power"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rsybf")
+text = "Power:"
+
+[node name="Level" type="HBoxContainer" parent="Shop/Chosen/Bow/Power"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Level" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level2" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level3" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level4" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level5" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level6" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level7" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level8" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level9" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="Level10" type="TextureRect" parent="Shop/Chosen/Bow/Power/Level"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_g6ieo")
+
+[node name="PowerBuy" type="Sprite2D" parent="Shop/Chosen/Bow"]
+position = Vector2(1020, 366)
+texture = ExtResource("13_knqdo")
+
+[node name="Power" type="Button" parent="Shop/Chosen/Bow/PowerBuy" groups=["button", "buy"]]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -26.0
+offset_right = -25.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Price" type="Label" parent="Shop/Chosen/Bow/PowerBuy"]
+offset_left = -25.0
+offset_top = 29.0
+offset_right = 25.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("3_rsybf")
+text = "50"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="FadeElements/BlackGrad/BlackGradButton" to="." method="_on_black_grad_button_pressed"]
+[connection signal="pressed" from="FadeElements/Shop/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="gui_input" from="PanelBG" to="." method="_on_panel_bg_gui_input"]
+[connection signal="gui_input" from="Shop" to="." method="_on_shop_gui_input"]
+[connection signal="pressed" from="Shop/Products/BowButton" to="." method="_on_bow_button_pressed"]

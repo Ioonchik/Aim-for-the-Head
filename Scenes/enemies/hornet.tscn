@@ -1,0 +1,296 @@
+[gd_scene load_steps=16 format=3 uid="uid://dah4klh1prr1i"]
+
+[ext_resource type="PackedScene" uid="uid://bv73qmp1a1knv" path="res://Scenes/enemy.tscn" id="1_vc34q"]
+[ext_resource type="Script" path="res://Scenes/enemies/hornet.gd" id="2_ri4d4"]
+[ext_resource type="Texture2D" uid="uid://bcp363rdvvjo1" path="res://Sprites/Enemies/Hornet/Body.svg" id="2_uhuxg"]
+[ext_resource type="Texture2D" uid="uid://bkg2t2xpq3dkf" path="res://Sprites/Enemies/Hornet/Head.svg" id="3_dysob"]
+[ext_resource type="Texture2D" uid="uid://cw4318qi6wegl" path="res://Sprites/Enemies/Hornet/Sting.svg" id="4_74bts"]
+[ext_resource type="Texture2D" uid="uid://bxw48nhpb5v2t" path="res://Sprites/Enemies/Hornet/FirstWing.svg" id="5_kvc3h"]
+[ext_resource type="Texture2D" uid="uid://cy4bssy4ohpvv" path="res://Sprites/Enemies/Hornet/SecondWing.svg" id="6_riu5a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5vqkc"]
+radius = 19.0599
+height = 76.6667
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2n3qw"]
+radius = 27.5128
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5dni3"]
+radius = 16.6874
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dkl3s"]
+radius = 25.8333
+
+[sub_resource type="Animation" id="Animation_djwqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/BodyBone/HeadBone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0610865]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/BodyBone/StingBone:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/BodyBone/FirstWingBone:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.261799]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/BodyBone/SecondWingBone:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_1w41a"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -80), Vector2(100, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.43997]
+}
+
+[sub_resource type="Animation" id="Animation_vty57"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -80), Vector2(0, -120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.0872665, -0.174533, 0.0872665, -0.0872665]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/BodyBone/HeadBone:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.0610865, -0.261799, 0.0, -0.0610865]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/BodyBone/StingBone:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, -0.349066, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/BodyBone/FirstWingBone:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1, 1.2, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.261799, 0.827286, 0.0, 0.261799, 0.827286, 0.0, 0.261799]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/BodyBone/SecondWingBone:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1, 1.2, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.174533, -0.349066, 0.523599, 0.174533, -0.349066, 0.523599, 0.174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1fqfi"]
+_data = {
+"RESET": SubResource("Animation_djwqy"),
+"die": SubResource("Animation_1w41a"),
+"idle": SubResource("Animation_vty57")
+}
+
+[node name="Hornet" instance=ExtResource("1_vc34q")]
+script = ExtResource("2_ri4d4")
+
+[node name="Skeleton2D" parent="." index="0"]
+scale = Vector2(1.2, 1.2)
+
+[node name="BodySprite" parent="Skeleton2D/BodyBone" index="0"]
+texture = ExtResource("2_uhuxg")
+
+[node name="CollisionShape2D" parent="Skeleton2D/BodyBone/BodyArea" index="0"]
+position = Vector2(-6.56, 18.345)
+shape = SubResource("CapsuleShape2D_5vqkc")
+
+[node name="HeadBone" parent="Skeleton2D/BodyBone" index="2"]
+position = Vector2(-7, -23)
+rotation = -0.0610865
+scale = Vector2(0.999998, 0.999998)
+
+[node name="HeadSprite" parent="Skeleton2D/BodyBone/HeadBone" index="0"]
+position = Vector2(-10, -19)
+texture = ExtResource("3_dysob")
+
+[node name="CollisionShape2D" parent="Skeleton2D/BodyBone/HeadBone/HeadArea" index="0"]
+position = Vector2(-9.11951, -9.24066)
+shape = SubResource("CircleShape2D_2n3qw")
+
+[node name="StingBone" type="Bone2D" parent="Skeleton2D/BodyBone" index="3"]
+position = Vector2(-5, 27)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/BodyBone/StingBone" index="0"]
+position = Vector2(-23, 19)
+texture = ExtResource("4_74bts")
+
+[node name="FirstWingBone" type="Bone2D" parent="Skeleton2D/BodyBone" index="4"]
+position = Vector2(-1.92, 4)
+rotation = 0.261799
+scale = Vector2(0.999999, 0.999999)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/BodyBone/FirstWingBone" index="0"]
+position = Vector2(33, -14)
+texture = ExtResource("5_kvc3h")
+
+[node name="SecondWingBone" type="Bone2D" parent="Skeleton2D/BodyBone" index="5"]
+position = Vector2(1, 25)
+rotation = 0.174533
+scale = Vector2(1, 1)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/BodyBone/SecondWingBone" index="0"]
+position = Vector2(33, -14)
+texture = ExtResource("6_riu5a")
+
+[node name="CollisionShape2D" parent="Skeleton2D/LegsArea" index="0"]
+position = Vector2(19.1666, 46.6667)
+shape = SubResource("CircleShape2D_5dni3")
+
+[node name="AttackArea" type="Area2D" parent="." index="1"]
+position = Vector2(0, -80)
+scale = Vector2(1.2, 1.2)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0"]
+position = Vector2(-15.8333, 41.6667)
+shape = SubResource("CircleShape2D_dkl3s")
+
+[node name="Shadow" parent="." index="2"]
+visible = false
+
+[node name="HealthBar" parent="." index="3"]
+offset_left = -70.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -160.0
+scale = Vector2(0.5, 0.5)
+
+[node name="SoulParticles" parent="." index="4"]
+amount = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_1fqfi")
+}
+blend_times = [&"die", &"idle", 2.0, &"die", &"RESET", 2.0, &"die", &"die", 2.0]
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

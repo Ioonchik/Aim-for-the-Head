@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://xkbo0iowaur5"]
+
+[ext_resource type="Script" path="res://Scenes/weapon.gd" id="1_tqc4n"]
+[ext_resource type="Texture2D" uid="uid://nty20nr8f04x" path="res://Sprites/Weapons/Bow.svg" id="2_71wh5"]
+[ext_resource type="Texture2D" uid="uid://dkg2hvculpd6f" path="res://Sprites/Pistol.svg" id="3_lqupr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uxcy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_71wh5")
+}],
+"loop": true,
+"name": &"bow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lqupr")
+}],
+"loop": true,
+"name": &"pistol",
+"speed": 5.0
+}]
+
+[node name="Weapon" type="CharacterBody2D"]
+script = ExtResource("1_tqc4n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3uxcy")
+animation = &"bow"
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
